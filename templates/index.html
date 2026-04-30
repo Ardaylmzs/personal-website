@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="home" class="vh-100 d-flex align-items-center position-relative overflow-hidden text-white">
+        <div class="hero-bg-overlay"></div>
+        
+        <div class="container position-relative z-3">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="d-inline-flex align-items-center bg-dark-soft px-3 py-2 rounded-pill mb-4 border border-primary-glow animate-fade-down">
+                        <span class="status-dot me-2"></span>
+                        <small class="text-uppercase tracking-wider fw-semibold text-white-50">Business & Data Science Portfolio</small>
+                    </div>
+
+                    <h1 class="display-2 fw-bold mb-3 animate-fade-up">
+                        Welcome to <span class="text-primary">Arda Yılmaz's</span><br>
+                        Digital Workspace
+                    </h1>
+                    
+                    <p class="lead text-light mb-5 animate-fade-up delay-1" style="max-width: 600px;">
+                        Marmara University Business student specializing in <strong>Python Automation</strong> and <strong>Data Mining</strong>. 
+                        I bridge the gap between business logic and technical efficiency.
+                    </p>
+                    
+                    <div class="d-flex gap-3 animate-fade-up delay-2">
+                        <a href="#blog" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow-blue">Read Blog</a>
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill fw-bold">About Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#blog" class="scroll-indicator animate-bounce">
+            <span class="text-white-50 small text-uppercase mb-2 d-block">Explore</span>
+            <div class="mouse-icon">
+                <div class="wheel"></div>
+            </div>
+        </a>
+    </section>
+
+    <section id="blog" class="py-5 bg-dark-deep">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <h6 class="text-primary text-uppercase fw-bold">Recent Updates</h6>
+                    <h2 class="display-5 fw-bold text-white">Daily Insights</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                </div>
+        </div>
+    </section>
+
+    <div class="container py-5">
+        <div class="row mb-5 animate-fade-up">
+            <div class="col-lg-6">
+                <h6 class="text-primary text-uppercase fw-bold mb-2">Daily Blog</h6>
+                <h2 class="display-5 fw-bold text-white">Latest <span class="text-primary">Insights</span></h2>
+            </div>
+            <div class="col-lg-6 d-flex align-items-end justify-content-lg-end mt-3 mt-lg-0">
+                <a href="{{ url_for('blog') }}" class="btn btn-outline-primary rounded-pill px-4">View All Posts</a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for post in all_posts %}
+            
+            <div class="col-md-4 animate-fade-up" style="--delay: {{ loop.index * 0.2 }}; animation-delay: calc(var(--delay) * 1s);">
+                <div class="card blog-card bg-secondary-dark border-0 h-100 shadow-sm">
+                    {% if post.cover_image %}
+                    <img src="{{ post.cover_image }}" class="card-img-top rounded-top-4" alt="Blog Image">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='images/default-blog-image.png') }}" class="card-img-top rounded-top-4" alt="Default Blog Image">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="d-flex mb-3">
+                            <span class="badge bg-primary-soft text-primary me-2 truncate-2-lines">{{ post.title }}</span>
+                            <small class="text-light">{{ post.date }}</small> 
+                        </div>
+                        
+                        <h5 class="card-title text-white fw-bold mb-3">{{ post.body }}</h5>
+                        
+                        <a href="{{ post.url }}" class="text-primary text-decoration-none fw-semibold">Read More <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+
+        </div>
+    </div>
+{% endblock %}

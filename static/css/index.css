@@ -1,0 +1,426 @@
+/* Temel Değişkenler ve Renkler */
+.body{
+    padding-top: 30px;
+}
+:root {
+    --primary-color: #00d2ff;
+    --dark-bg: #0b0f19;
+    --soft-bg: rgba(255, 255, 255, 0.05);
+}
+
+#navbar{
+    position: sticky;
+    top:0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.bg-dark-deep { background-color: var(--dark-bg); }
+
+/* Hero / Welcome Page Ayarları */
+#home {
+    background-image: url('senin-arka-plan-resmin.jpg'); /* Hazırladığımız resim */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.7) 100%);
+    z-index: 1;
+}
+
+.z-3 { z-index: 3; }
+
+/* Status Badge & Glow */
+.bg-dark-soft { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px); }
+.border-primary-glow { border-color: rgba(0, 210, 255, 0.3) !important; box-shadow: 0 0 15px rgba(0, 210, 255, 0.1); }
+.status-dot { width: 10px; height: 10px; background-color: var(--primary-color); border-radius: 50%; box-shadow: 0 0 10px var(--primary-color); animation: pulse 2s infinite; }
+
+/* Animasyonlar */
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 1; }
+    70% { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(0.95); opacity: 0; }
+}
+
+.animate-fade-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+.animate-fade-down { animation: fadeInDown 1s ease-out forwards; }
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    z-index: 3;
+    text-align: center;
+}
+
+.mouse-icon {
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--primary-color);
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+    animation: scrollWheel 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(15px); }
+}
+
+/* Shadow Effects */
+.shadow-blue { box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3); transition: 0.3s; }
+.shadow-blue:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 210, 255, 0.4); }
+
+/* Blog Kartı Arka Plan Rengi */
+.bg-secondary-dark {
+    background-color: #161e2d !important;
+}
+
+.blog-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+
+/* Kartın Üzerine Gelince Efekt */
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 210, 255, 0.15) !important;
+}
+
+/* Başlıkları maksimum 2 satırla sınırla */
+.truncate-2-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-card img {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.blog-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-title {
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.blog-card:hover .card-title {
+    color: var(--primary-color) !important;
+}
+
+/* Badge Arka Planı */
+.bg-primary-soft {
+    background-color: rgba(0, 210, 255, 0.1) !important;
+}
+
+/* Arka plan ve yazı renkleri */
+.bg-dark {
+    background-color: #181817 !important;
+}
+
+.text-primary {
+    color: #00d2ff !important; /* Teknoloji vurgusu için canlı bir mavi */
+}
+
+.btn-primary {
+    background-color: #00d2ff;
+    border-color: #00d2ff;
+    color: #1a1b20;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #00b4db;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.bg-primary-soft {
+    background-color: rgba(0, 210, 255, 0.1);
+}
+
+/* Daha önce konuştuğumuz animasyonu buraya bağlayabilirsin */
+.animate-on-scroll {
+    animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo{
+    height: 50px;
+    width: 50px;
+}
+
+/* --- TEMEL AYARLAR --- */
+html {
+    scroll-behavior: smooth; /* Tüm sayfa içi geçişleri yumuşatır */
+}
+
+:root {
+    --primary-color: #00d2ff;
+    --dark-bg: #0b0f19;
+}
+
+body {
+    background-color: var(--dark-bg);
+}
+
+/* --- NAVBAR --- */
+.bg-dark-transparent {
+    background-color: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(10px);
+}
+
+/* --- HERO & WELCOME --- */
+#home {
+    background-image: url('images/backgroun_img.png'); /* Resmini buraya ekle */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(11, 15, 25, 0.98) 0%, rgba(11, 15, 25, 0.7) 100%);
+    z-index: 1;
+}
+
+.z-3 { z-index: 3; }
+
+/* Blog kısmına geçişteki boşluk ayarı (Navbar başlığı kapatmasın diye) */
+#blog {
+    scroll-margin-top: 80px;
+    background-color: #0b111b;
+}
+
+/* --- ANIMASYONLAR --- */
+.animate-fade-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+.animate-fade-down { animation: fadeInDown 1s ease-out forwards; }
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- MOUSE INDICATOR --- */
+.scroll-indicator {
+    position:static;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.mouse-icon {
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--primary-color);
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+    animation: scrollWheel 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(15px); }
+}
+
+/* --- BUTTONS & CARDS --- */
+.btn-primary { background-color: var(--primary-color); border: none; color: #000; }
+.shadow-blue { box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2); }
+.bg-secondary-dark { background-color: #161e2d; border-radius: 15px; transition: 0.3s; }
+.blog-card:hover { transform: translateY(-5px); background-color: #1c2638; }
+.bg-primary-soft { background-color: rgba(0, 210, 255, 0.1); }
+
+/* Genel Arka Plan */
+body {
+    background-color: #0f0f0f; /* Sade ve koyu bir arka plan */
+}
+
+/* Kartın Temel Stili */
+.project-card {
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Başlangıçta ince, belirsiz bir sınır */
+    border-radius: 15px;
+    transition: all 0.4s ease; /* Yumuşak geçiş efekti */
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a !important; /* Kart iç rengi */
+}
+
+/* LED Yansıma Efekti (Border Glow) */
+.project-card:hover {
+    transform: translateY(-10px); /* Hafif yukarı kalkma */
+    border-color: #00d2ff; /* LED rengi (Mavi tonu örneği) */
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5), 
+                0 0 30px rgba(0, 210, 255, 0.2); /* Dışa doğru parlayan LED etkisi */
+}
+
+/* GitHub Link Stili */
+.github-link {
+    color: #00d2ff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.github-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #00d2ff;
+}
+
+/* Kart Başlığı ve Metni */
+.card-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+}
+
+.instagram-bot:hover {
+    border-color: #48A111;
+    box-shadow: 0 0 15px rgba(34, 113, 25, 0.5),
+                0 0 30px rgba(34, 113, 25, 0.2); 
+}
+
+.instagram-bot .github-link {
+    color : #48A111 ;
+}
+.instagram-bot .github-link:hover {
+    color: #fff;
+    text-shadow:#48A111;
+}
+
+/* Scraper kartına özel Kırmızı LED efekti */
+.scraper-card:hover {
+    border-color: #ff4b2b; /* Canlı Kırmızı/Turuncu */
+    box-shadow: 0 0 15px rgba(255, 75, 43, 0.5), 
+                0 0 30px rgba(255, 75, 43, 0.2);
+}
+
+/* Link rengini de kart rengiyle uyumlu yapalım */
+.scraper-card .github-link {
+    color: #ff4b2b;
+}
+
+.scraper-card .github-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #ff4b2b;
+}
+
+.bot-card .github-link{
+    color: #ffc107;
+}
+.bot-card:hover {
+    border-color: #ffc107; /* Bootstrap Warning Sarısı */
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.5), 
+                0 0 30px rgba(255, 193, 7, 0.2);
+}
+
+ /* Öğrenme projeleri kartına özel Mor LED efekti */
+.learning-card:hover {
+    border-color: #bd00ff; /* Neon Mor */
+    box-shadow: 0 0 15px rgba(189, 0, 255, 0.5), 
+                0 0 30px rgba(189, 0, 255, 0.2);
+}
+
+/* Link rengini de kart rengiyle uyumlu yapalım */
+.learning-card .github-link {
+    color: #bd00ff;
+}
+
+.learning-card .github-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #bd00ff;
+}
+
+/* Resimlerin Karta Tam Oturması İçin */
+.project-image {
+    height: 200px; /* Tüm kartlardaki resimlerin boyunu eşitler */
+    object-fit: cover; /* Resmi kırparak (sündürmeden) belirlenen yüksekliğe sığdırır */
+    border-top-left-radius: 15px; /* Kartın üst köşe ovalliği ile uyumlu olması için */
+    border-top-right-radius: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Resim ile metin arasına ince bir çizgi */
+    transition: opacity 0.3s ease; /* Hover için animasyon hazırlığı */
+}
+
+
+.project-card:hover .project-image {
+    opacity: 0.8; 
+}
+
+.project-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Her kart için farklı gecikme süreleri */
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.3s; }
+.project-card:nth-child(3) { animation-delay: 0.5s; }
+.project-card:nth-child(4) { animation-delay: 0.7s; }

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="projects-section py-5">
+    <div class="container">
+        <h2 class="text-center text-white mb-5">My Projects</h2>
+        <div class="row g-4">
+            <!-- Proje Kartı 1 -->
+            <div class="col-md-4">
+                <div class="card project-card instagram-bot bg-dark text-success">
+                    <img src="{{ url_for('static' , filename='images/instagram-bot.png') }}" class="card-img-top project-image" alt="instagram-bot img">
+                    <div class="card-body">
+                        <h5 class="card-title">Instagram Follower Bot</h5>
+                        <p class="card-text">An automated follow and engagement system developed utilizing Python and Selenium</p>
+                        <a href="https://github.com/Ardaylmzs/python-projects/tree/main/instagram-follow-bot" class="github-link">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+    <div class="card project-card bg-dark text-white h-100">
+        <img src="{{ url_for('static' , filename='images/TetrisA.png') }}" class="card-img-top project-image" alt="TetrisA Project">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-info">
+                <i class="bi bi-cpu"></i> TetrisA
+            </h5>
+            <p class="card-text">
+                I rebuilt the classic Tetris experience with a modern touch. Developed in <strong> strategic collaboration with artificial intelligence </strong> to optimize the code architecture, this project demonstrates how traditional game mechanics can be seamlessly blended with the technologies of the future
+            </p>
+            <div class="mt-auto">
+                <a href="https://github.com/Ardaylmzs/TetrisA" class="github-link">
+                    View on GitHub &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+ <div class="col-md-4">
+    <!-- 'bot-card' class'ını özel CSS efektin için ekledim -->
+    <div class="card project-card bot-card bg-dark text-white h-100">
+        <img src="{{ url_for('static' , filename='images/homework-bot.png') }}" class="card-img-top project-image" alt="Homework Notification Project img">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-warning">
+                <i class="bi bi-robot"></i> Homework notification Bot
+            </h5>
+            <p class="card-text">
+                An automation system designed to monitor MyLab accounts at regular intervals. 
+                Developed using a <strong>Python and Selenium</strong> architecture, this bot logs into the 
+                system to track new assignments and updates, effectively eliminating the need for manual monitoring.
+            </p>
+            <div class="mt-auto">
+                <a href="https://github.com/Ardaylmzs/Homework-notifications" class="github-link">
+                    View on GitHub &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <!-- 'scraper-card' class'ı ile özel renk efekti verebiliriz -->
+    <div class="card project-card scraper-card bg-dark text-white h-100">
+         <img src="{{ url_for('static' , filename='images/data-mining.png') }}" class="card-img-top project-image" alt="Data Mining Project img">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-danger">
+                <i class="bi bi-geo-alt-fill"></i> Google Maps: Gym Scraper
+            </h5>
+            <p class="card-text">
+                Developed as a custom solution, this web scraping bot identifies gyms within specific regions on Google Maps. It automatically extracts critical data, such as addresses and contact information, transforming raw findings into a structured and organized dataset.
+            </p>
+            <div class="mt-auto">
+                <a href="https://github.com/Ardaylmzs/python-projects/tree/main/scraping" class="github-link">
+                    View on GitHub &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <!-- 'learning-card' class'ı ile mor bir LED efekti verebiliriz -->
+    <div class="card project-card learning-card bg-dark text-white h-100">
+         <img src="{{ url_for('static' , filename='images/python-mini project.png') }}" class="card-img-top project-image" alt="python-mini Project img">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-purple" style="color: #bd00ff;">
+                <i class="bi bi-code-slash"></i> Python Essentials: Learning Lab
+            </h5>
+            <p class="card-text">
+                A collection of utilities developed while mastering the Python programming language, including a 
+                <strong>Mini Calculator, Pomodoro App, and Password Manager.</strong> Focusing on core algorithms 
+                and file management, these projects established the foundation of my software development skills.
+            </p>
+            <div class="mt-auto">
+                <a href="https://github.com/Ardaylmzs/python-projects" class="github-link">
+                    View on GitHub &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-2">
+    <h2 class="text-white p-3">Daily Blog</h2>
+    <div class="row g-4 mb-5">
+        
+        {% if posts %}
+            {% for post in posts %}
+            <div class="col-md-4 animate-fade-up" style="--delay: {{ loop.index * 0.2 }}; animation-delay: calc(var(--delay) * 1s);">
+                <div class="card blog-card bg-secondary-dark border-0 h-100 shadow-sm">
+                    {% if post.image %}
+                    <img src="{{ post.image }}" class="card-img-top rounded-top-4" alt="Blog Image">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='images/default-blog-image.png') }}" class="card-img-top rounded-top-4" alt="Default Blog Image">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="d-flex mb-3">
+                            <span class="badge bg-primary-soft text-primary me-2 truncate-2-lines">{{ post.title }}</span>
+                            <small class="text-light">{{ post.date }}</small> 
+                        </div>
+                        
+                        <h5 class="card-title text-white fw-bold mb-3">{{ post.summary }}</h5>
+                        
+                        <a href="{{ post.url }}" class="text-primary text-decoration-none fw-semibold">Read More <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning">
+                we encounter some issues while fetching the blog posts. Please try again later.
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
