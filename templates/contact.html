@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="contact" class="py-0 bg-dark-deep">
+    <div class="container py-5">
+        <div class="row mb-5 text-center animate-fade-up">
+            <div class="col-12">
+                <h6 class="text-primary text-uppercase fw-bold mb-2">Get In Touch</h6>
+                <h2 class="display-5 fw-bold text-white">Let's Work Together</h2>
+                <div class="mx-auto bg-primary" style="height: 3px; width: 50px;"></div>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-5 animate-fade-up">
+                <h4 class="text-white mb-4">Connect With Me</h4>
+                <p class="text-secondary mb-5">Feel free to reach out for collaborations, data projects, or just to say hi! You can find me on these platforms:</p>
+                
+                <div class="social-links-grid">
+                    <a href="https://linkedin.com/in/Arda Yılmaz" target="_blank" class="social-item d-flex align-items-center p-3 mb-3 text-decoration-none">
+                        <div class="social-icon text-primary me-3">
+                            <img src="{{ url_for('static', filename='images/linkedin (1).png') }}" width="30" height="30"/>
+                        </div>
+                        <div>
+                            <span class="d-block text-white fw-bold">LinkedIn</span>
+                            <small class="text-secondary">Professional Network</small>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/Ardaylmzs" target="_blank" class="social-item d-flex align-items-center p-3 mb-3 text-decoration-none">
+                        <div class="social-icon text-primary me-3">
+                            <img src="{{ url_for('static', filename='images/social.png') }}" width="40" height="40"/>
+                        </div>
+                        <div>
+                            <span class="d-block text-white fw-bold">GitHub</span>
+                            <small class="text-secondary">Technical Projects</small>
+                        </div>
+                    </a>
+
+                    <a href="https://instagram.com/arda.ylmzs" target="_blank" class="social-item d-flex align-items-center p-3 mb-3 text-decoration-none">
+                        <div class="social-icon text-primary me-3">
+                            <img src="{{ url_for('static', filename='images/instagram.png') }}" width="30" height="30"/>
+                        </div>
+                        <div>
+                            <span class="d-block text-white fw-bold">Instagram</span>
+                            <small class="text-secondary">Daily Updates</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 animate-fade-up delay-1">
+                <div class="contact-form-card p-4 p-md-5 rounded-4 shadow-lg">
+                    <form id="contactForm" action="{{ url_for('contact') }}" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-white-50 small">Full Name</label>
+                                <input type="text" class="form-control custom-input" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white-50 small">Email Address</label>
+                                <input type="email" class="form-control custom-input" name="email" placeholder="name@example.com" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-white-50 small">Subject</label>
+                                <input type="text" class="form-control custom-input" name="subject" placeholder="Topic of conversation">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-white-50 small">Your Message</label>
+                                <textarea class="form-control custom-input" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                            </div>
+                            <div class="col-12 pt-3">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold shadow-blue">
+                                    Send Message <i class="bi bi-send-fill ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% if success_message %}
+                    <div class="alert alert-success mt-4" role="alert">
+                        {{ success_message }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
