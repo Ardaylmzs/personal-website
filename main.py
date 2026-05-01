@@ -51,8 +51,7 @@ def contact():
         msg.attach(MIMEText(body, 'plain'))
 
         try:
-            server = smtplib.SMTP('smtp.gmail.com', 465)
-            server.starttls() 
+            server = smtplib.SMTP_SSL('smtp.gmail.com', 465) 
             server.login(my_mail, my_app_password) 
             server.send_message(msg) 
             server.quit() 
