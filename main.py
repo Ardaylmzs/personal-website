@@ -35,8 +35,8 @@ def contact():
         received_subject = request.form.get('subject')
         
         # --- MAİL GÖNDERME AYARLARI ---
-        my_mail = os.getenv("my_mail")
-        my_app_password = os.getenv("my_app_password")
+        my_mail = os.environ.get("my_mail")
+        my_app_password = os.environ.get("my_app_password")
 
         # Mail paketini hazırlıyoruz
         msg = MIMEMultipart()
