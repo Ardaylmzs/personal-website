@@ -1,6 +1,7 @@
 from flask import Flask, render_template , request
 from api_client import get_blog_posts
 import smtplib
+import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -34,8 +35,8 @@ def contact():
         received_subject = request.form.get('subject')
         
         # --- MAİL GÖNDERME AYARLARI ---
-        my_mail = "ardaylmz1163@gmail.com" 
-        my_app_password = "tprrqfivqecnbkxq" 
+        my_mail = os.getenv("my_mail")
+        my_app_password = os.getenv("my_app_password")
 
         # Mail paketini hazırlıyoruz
         msg = MIMEMultipart()
