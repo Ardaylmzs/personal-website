@@ -2,10 +2,12 @@ from flask import Flask, render_template , request
 from api_client import get_blog_posts
 import smtplib
 import os
+from dotenv import load_dotenv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
+load_dotenv()
 
 @app.route('/')
 def home():
@@ -35,8 +37,8 @@ def contact():
         received_subject = request.form.get('subject')
         
         # --- MAİL GÖNDERME AYARLARI ---
-        my_mail = os.environ.get("my_mail")
-        my_app_password = os.environ.get("my_app_password")
+        my_mail = os.getenv("MY_EMAIL")
+        my_app_password = os.getenv("MY_APP_PASSWORD")
 
         # Mail paketini hazırlıyoruz
         msg = MIMEMultipart()
