@@ -58,7 +58,7 @@ def contact():
         email_thread.start()
 
         try:
-            server = smtplib.SMTP_SSL('smtp.gmail.com', 465) 
+            server = smtplib.SMTP_SSL('smtp.gmail.com', 465 , timeout=10) 
             server.login(my_mail, my_app_password) 
             server.send_message(msg) 
             server.quit() 
