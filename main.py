@@ -17,10 +17,10 @@ def home():
     formatted_for_home = []
     for post in posts_from_api:
         formatted_for_home.append({
-            "topic": "Python & Data",      # HTML'deki rozet (badge) kısmı
-            "title": post["title"],     # HTML'deki kart ana başlığı (h5)
-            "body": post["summary"],     # HTML'deki {% for x in post.body %} döngüsü için listeye çevrildi
-            "url": post["url"] ,             # "Read More" linki için (ileride HTML'e eklenebilir)
+            "topic": "Python & Data",      
+            "title": post["title"],   
+            "body": post["summary"],     
+            "url": post["url"] ,          
             "cover_image": post["image"] ,
             "date": post["date"]   
         })
@@ -43,10 +43,10 @@ def contact():
         try:
             # Resend ile mail gönderme işlemi
             params = {
-                "from": "onboarding@resend.dev", # Domain onaylatana kadar bu kalmalı
-                "to": os.getenv("MY_EMAIL"),    # Kendi mail adresin (Render'da tanımlı olmalı)
+                "from": "onboarding@resend.dev", 
+                "to": os.getenv("MY_EMAIL"),   
                 "subject": f"Portfolyo: {received_name} sana ulaştı!",
-                "reply_to": received_email,      # Yanıtla dediğinde formu doldurana gitsin
+                "reply_to": received_email,    
                 "html": f"""
                     <h3>Yeni Mesaj Bildirimi</h3>
                     <p><strong>Gönderen:</strong> {received_name} ({received_email})</p>
