@@ -1,4 +1,5 @@
 import threading
+import resend
 from flask import Flask, render_template , request
 from api_client import get_blog_posts
 import smtplib
@@ -29,6 +30,8 @@ def home():
 def about():
     return render_template('about.html')
 
+resend.api_key = os.getenv("RESEND_API_KEY")
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
@@ -36,41 +39,34 @@ def contact():
         received_email = request.form.get('email')
         received_message = request.form.get('message')
         received_subject = request.form.get('subject')
-        
-        # --- MAİL GÖNDERME AYARLARI ---
-        my_mail = os.getenv("MY_EMAIL")
-        my_app_password = os.getenv("MY_APP_PASSWORD")
-
-        # Mail paketini hazırlıyoruz
-        msg = MIMEMultipart()
-        msg['From'] = received_email
-        msg['To'] = my_mail 
-        msg['Subject'] = f"Portfolyo: {received_name} sana ulaştı!"
-
-        # Mailin içindeki metin
-        body = f"You get a new message from your portfolio website.\n\nFrom: {received_name}\nE-mail: {received_email}\nSubject: {received_subject}\n\nMessage:\n{received_message}"
-        msg.attach(MIMEText(body, 'plain'))
-        
-        email_thread = threading.Thread(
-            target=send_async_email, 
-            args=(msg, my_mail, my_app_password)
-        )
-        email_thread.start()
 
         try:
-            server = smtplib.SMTP_SSL('smtp.gmail.com', 465) 
-            server.login(my_mail, my_app_password) 
-            server.send_message(msg) 
-            server.quit() 
-            
-            return render_template('contact.html', basari_mesaji="we received your message we will get back to you soon.")
-            
-        except Exception as e:
-            # İnternet kopsa veya şifre yanlış olsa bile site çökmesin diye hatayı yakalıyoruz
-            print(f"Mail gönderilirken hata oluştu: {e}")
-            return render_template('contact.html', basari_mesaji="Bir hata oluştu, lütfen daha sonra tekrar deneyin.")
+            # Resend ile mail gönderme işlemi
+            params = {
+                "from": "onboarding@resend.dev", # Domain onaylatana kadar bu kalmalı
+                "to": os.getenv("MY_EMAIL"),    # Kendi mail adresin (Render'da tanımlı olmalı)
+                "subject": f"Portfolyo: {received_name} sana ulaştı!",
+                "reply_to": received_email,      # Yanıtla dediğinde formu doldurana gitsin
+                "html": f"""
+                    <h3>Yeni Mesaj Bildirimi</h3>
+                    <p><strong>Gönderen:</strong> {received_name} ({received_email})</p>
+                    <p><strong>Konu:</strong> {received_subject}</p>
+                    <hr>
+                    <p><strong>Mesaj:</strong></p>
+                    <p>{received_message}</p>
+                """
+            }
 
-    # Sadece sayfayı görüntüleyenler için boş formu göster
+            # Maili gönderiyoruz
+            resend.Emails.send(params)
+
+            return render_template('contact.html', basari_mesaji="Mesajın başarıyla bize ulaştı. En kısa sürede döneceğiz.")
+
+        except Exception as e:
+            # Hata oluşursa loglara yazdırıyoruz
+            print(f"Resend hatası: {e}")
+            return render_template('contact.html', basari_mesaji="Maalesef bir hata oluştu, lütfen sonra tekrar dene.")
+
     return render_template('contact.html')
 
 @app.route('/blog')
