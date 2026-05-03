@@ -1,3 +1,4 @@
+import threading
 from flask import Flask, render_template , request
 from api_client import get_blog_posts
 import smtplib
@@ -49,6 +50,12 @@ def contact():
         # Mailin içindeki metin
         body = f"You get a new message from your portfolio website.\n\nFrom: {received_name}\nE-mail: {received_email}\nSubject: {received_subject}\n\nMessage:\n{received_message}"
         msg.attach(MIMEText(body, 'plain'))
+        
+        email_thread = threading.Thread(
+            target=send_async_email, 
+            args=(msg, my_mail, my_app_password)
+        )
+        email_thread.start()
 
         try:
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465) 
